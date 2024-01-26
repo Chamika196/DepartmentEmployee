@@ -1,4 +1,4 @@
-﻿using DepartmentEmployeeManager.Api.Data.Repos;
+using DepartmentEmployeeManager.Api.Data.Repos;
 using DepartmentEmployeeManager.Api.DTOs;
 using DepartmentEmployeeManager.Api.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -30,12 +30,13 @@ namespace EmployeeEmployeeManager.Api.Controllers
                     FirstName= request.FirstName,
                     LastName= request.LastName,
                     Email= request.Email,
-                    DOB= request.DOB, //Parse DOB string to DateTime
+                    DOB= request.DOB, 
                     Salary= request.Salary,
                     DepartmentId= request.DepartmentId,
 
                     
                 };
+                employee.Age = CalculateAge(employee.DOB);
                 Console.WriteLine(employee.Age+"dfhgjhjkkkkkkkkkkkkkkkkkkkkkkkkkk");
                 Debug.WriteLine(employee.Age+"1111111111111111111111111111111111111111111111111");
                 await employeeRepository.CreateAsync(employee);
@@ -60,6 +61,19 @@ namespace EmployeeEmployeeManager.Api.Controllers
                 // Log the exception
                 return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while processing your request.");
             }
+        }
+        // Helper method to calculate age based on DOB
+        private int CalculateAge(DateTime dob)
+        {
+            DateTime currentDate = DateTime.UtcNow;
+            int age = currentDate.Year - dob.Year;
+
+            if (currentDate < dob.AddYears(age))
+            {
+                age--;
+            }
+
+            return age;
         }
 
         /// Retrieves a list of all Employees.
@@ -90,6 +104,7 @@ namespace EmployeeEmployeeManager.Api.Controllers
                         DOB= employee.DOB,
                         Salary= employee.Salary,
                         DepartmentId= employee.DepartmentId,
+                        Age = CalculateAge(employee.DOB)
                         //age= employee.Age,
                        
                     });
