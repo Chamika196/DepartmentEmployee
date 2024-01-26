@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\DepartmentEmployeeManager.Api.props" />
+</Project>

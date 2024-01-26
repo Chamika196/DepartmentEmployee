@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "KcCr2UxAy3IFbehiYEQbKWNlhbEp5pRY2uCh9VMbUtA=",
+  "Source": "DepartmentEmployeeManager.Api",
+  "BasePath": "_content/DepartmentEmployeeManager.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
